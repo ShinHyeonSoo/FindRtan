@@ -13,10 +13,13 @@ public class Card : MonoBehaviour
 
     public SpriteRenderer _frontImage;
 
+    AudioSource _audioSource;
+    public AudioClip _clip;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        _audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -33,6 +36,9 @@ public class Card : MonoBehaviour
 
     public void OpenCard()
     {
+        if (GameManager._instance._secondCard != null) return;
+
+        _audioSource.PlayOneShot(_clip);
         _anim.SetBool("isOpen", true);
         _front.SetActive(true);
         _back.SetActive(false);
