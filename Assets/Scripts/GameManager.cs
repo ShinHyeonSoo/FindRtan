@@ -11,8 +11,12 @@ public class GameManager : MonoBehaviour
     public Card _secondCard;
 
     public Text _timeText;
+    public GameObject _endText;
 
+    public int _cardCount = 0;
     float _time = 0.0f;
+
+    bool _isEnd = false;
 
     private void Awake()
     {
@@ -23,14 +27,20 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Time.timeScale = 1.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        _time += Time.deltaTime;
-        _timeText.text = _time.ToString("N2");
+        if (!_isEnd)
+        {
+            _time += Time.deltaTime;
+            _timeText.text = _time.ToString("N2");
+
+            if (_time >= 30.0f)
+                EndGame();
+        }
     }
 
     public void Matched()
@@ -39,6 +49,13 @@ public class GameManager : MonoBehaviour
         {
             _firstCard.DestroyCard();
             _secondCard.DestroyCard();
+            _cardCount -= 2;
+
+            if(_cardCount == 0)
+            {
+                _isEnd = true;
+                Invoke("EndGame", 1.0f);
+            }
         }
         else
         {
@@ -48,5 +65,11 @@ public class GameManager : MonoBehaviour
 
         _firstCard = null;
         _secondCard = null;
+    }
+
+    void EndGame()
+    {
+        Time.timeScale = 0.0f;
+        _endText.SetActive(true);
     }
 }
