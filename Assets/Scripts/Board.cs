@@ -31,6 +31,7 @@ public class Board : MonoBehaviour
             go.transform.position = new Vector2(x, y);
             go.GetComponent<Card>().Setting(arr[i]);
             go.SetActive(false);
+            go.GetComponent<Animator>().enabled = false;
 
             cards[i] = go;
         }
@@ -66,6 +67,12 @@ public class Board : MonoBehaviour
         }
 
         GameManager._instance._isStart = true;
+
+        for(int i = 0; i < _size * _size; ++i)
+        {
+            cards[i].GetComponent<Animator>().enabled = true;
+        }
+
         yield return null;
     }
 }
