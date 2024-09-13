@@ -7,7 +7,14 @@ public class AudioManager : MonoBehaviour
     public static AudioManager _instance;
 
     AudioSource _audioSource;
-    public AudioClip _clip;
+    public AudioClip[] _clip;
+
+    public enum audioType
+    {
+        MAIN,
+        TIMER,
+        GAMEOVER,
+    }
 
     private void Awake()
     {
@@ -27,7 +34,15 @@ public class AudioManager : MonoBehaviour
     {
         _audioSource = GetComponent<AudioSource>();
 
-        _audioSource.clip = _clip;
+        //_audioSource.clip = _clip;
+        //_audioSource.Play();
+        ChangeBgm(audioType.MAIN);
+    }
+
+    public void ChangeBgm(audioType index)
+    {
+        _audioSource.Stop();
+        _audioSource.clip = _clip[(int)index];
         _audioSource.Play();
     }
 }

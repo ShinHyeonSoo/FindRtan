@@ -8,5 +8,6 @@ public class RetryButton : MonoBehaviour
     public void Retry()
     {
         SceneManager.LoadScene("MainScene");
+        AudioManager._instance.ChangeBgm(AudioManager.audioType.MAIN);
     }
 }

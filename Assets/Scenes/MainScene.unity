@@ -580,6 +580,8 @@ MonoBehaviour:
   _androidGameId: 5696053
   _iOSGameId: 5696052
   _testMode: 1
+  _androidAdUnitId: Rewarded_Android
+  _iOSAdUnitId: Rewarded_iOS
 --- !u!4 &1423974583
 Transform:
   m_ObjectHideFlags: 0
@@ -630,6 +632,7 @@ MonoBehaviour:
   _timeText: {fileID: 1274227610}
   _endText: {fileID: 391025350}
   _clip: {fileID: 8300000, guid: 8eaf923ebe2b3da4d92131a99e63e69f, type: 3}
+  _incorrectClip: {fileID: 8300000, guid: d0c001e352dfcd94991b12205844ddef, type: 3}
   _cardCount: 0
 --- !u!4 &1636108123
 Transform:

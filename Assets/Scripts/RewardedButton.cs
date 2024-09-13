@@ -65,6 +65,7 @@ public class RewardedButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSho
             // Grant a reward.
             LoadAd();
             SceneManager.LoadScene("MainScene");
+            AudioManager._instance.ChangeBgm(AudioManager.audioType.MAIN);
         }
     }
 

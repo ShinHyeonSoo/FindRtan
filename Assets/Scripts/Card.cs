@@ -36,12 +36,14 @@ public class Card : MonoBehaviour
 
     public void OpenCard()
     {
+        if (!GameManager._instance._isStart) return;
         if (GameManager._instance._secondCard != null) return;
 
         _audioSource.PlayOneShot(_clip);
         _anim.SetBool("isOpen", true);
-        _front.SetActive(true);
-        _back.SetActive(false);
+        //_front.SetActive(true);
+        //_back.SetActive(false);
+        Invoke("InvokeFlip", 0.35f);
 
         if(GameManager._instance._firstCard == null )
         {
@@ -74,5 +76,10 @@ public class Card : MonoBehaviour
         _anim.SetBool("isOpen", false);
         _front.SetActive(false);
         _back.SetActive(true);
+    }
+    void InvokeFlip()
+    {
+        _front.SetActive(true);
+        _back.SetActive(false);
     }
 }
